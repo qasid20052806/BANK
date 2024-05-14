@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
 
-namespace BANK.domain.Entites
+namespace bank_core1.domain.Entites
 {
     public class Employee
     {
