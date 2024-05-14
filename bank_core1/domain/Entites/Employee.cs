@@ -12,6 +12,7 @@ namespace BANK.domain.Entites
         int ID { get; set; }
         string name { get; set; }
         string surname { get; set; }
+
         int positionId { get; set; }
         string email { get; set; }
         string phone { get; set; }

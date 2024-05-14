@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BANK
+namespace bank_core1
 {
-    internal class BANK_Core
+    internal class Program
     {
+        static void Main(string[] args)
+        {
+        }
     }
 }
