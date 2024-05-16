@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace bank_core1.DataAccess.SQLserver
 {
-    public class SqlEmployeeeRepository : ICrudRepository<Employee>
+    public class SqlEmployeeRepository : ICrudRepository<Employee>
     {
       
         public void Add(Employee item)

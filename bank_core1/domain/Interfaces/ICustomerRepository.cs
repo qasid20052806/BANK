@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace bank_core1.domain.Interfaces
 {
-    public interface ICustomerRepository : ICustomerRepository
+    public interface ICustomerRepository : ICrudRepository<Customer>
     {
        
 
