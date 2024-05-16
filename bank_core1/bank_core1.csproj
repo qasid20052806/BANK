@@ -61,6 +61,7 @@
     <Compile Include="domain\Entites\transaction.cs" />
     <Compile Include="domain\Interfaces\ICustomerRepository.cs" />
     <Compile Include="domain\Interfaces\IEmployeeRepository.cs" />
+    <Compile Include="domain\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
