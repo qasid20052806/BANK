@@ -50,7 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\SQLserver\SqlCustomerRepository.cs" />
     <Compile Include="DataAccess\SQLserver\SqlEmployeeRepository.cs" />
+    <Compile Include="DataAccess\SQLserver\SqlUnitOfWork.cs" />
     <Compile Include="domain\Entites\Accounts.cs" />
     <Compile Include="domain\Entites\Accounts_type.cs" />
     <Compile Include="domain\Entites\Branch.cs" />
