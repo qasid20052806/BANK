@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\SQLserver\SqlEmployeeeRepository.cs" />
     <Compile Include="domain\Entites\Accounts.cs" />
     <Compile Include="domain\Entites\Accounts_type.cs" />
     <Compile Include="domain\Entites\Branch.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="domain\Entites\Employee.cs" />
     <Compile Include="domain\Entites\position.cs" />
     <Compile Include="domain\Entites\transaction.cs" />
+    <Compile Include="domain\Interfaces\ICrudRepository.cs" />
     <Compile Include="domain\Interfaces\ICustomerRepository.cs" />
     <Compile Include="domain\Interfaces\IEmployeeRepository.cs" />
     <Compile Include="domain\Interfaces\IUnitOfWork.cs" />
@@ -69,8 +71,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataAccess\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
