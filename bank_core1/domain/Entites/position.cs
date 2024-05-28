@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace bank_core1.domain.Entites
 {
-    public class position
+    public class position : IDbEntities
     {
-       public int ID {  get; set; }
+       public int Id {  get; set; }
        public string Position_name { get; set; }
 
     }

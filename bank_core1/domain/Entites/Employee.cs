@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace bank_core1.domain.Entites
 {
-    public class Employee
+    public class Employee : IDbEntities
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
+       
         public string name { get; set; }
         public string surname { get; set; }
        

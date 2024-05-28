@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-namespace bank_core1.domain.Entites
+﻿namespace bank_core1.domain.Entites
 {
-    public class Account_type
+    public class Account_type :IDbEntities
     {
-       public int ID { get; set; }
-       public string Type_name { get; set; }
-       public string Description { get; set; }
+        public int Id { get; set; }
+        public string Type_name { get; set; }
+        public string Description { get; set; }
 
     }
 }

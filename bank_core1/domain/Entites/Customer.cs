@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace bank_core1.domain.Entites
 {
-    public class Customer
+    public class Customer : IDbEntities
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime JoinTime { get; set;}

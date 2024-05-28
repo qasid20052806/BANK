@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bank_core1
+namespace bank_core1.domain.Entites
 {
-    internal class Program
+    public interface IDbEntities
     {
-        static void Main(string[] args)
-        {
-        }
+
+        int Id { get; set; }   
     }
 }

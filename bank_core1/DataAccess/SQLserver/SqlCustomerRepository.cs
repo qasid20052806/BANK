@@ -2,17 +2,58 @@
 using bank_core1.domain.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace bank_core1.DataAccess.SQLserver
 {
-    public class SqlCustomerRepository : ICrudRepository<Customer>
+    public class SqlCustomerRepository : ICustomerRepository
     {
-        public void Add(Customer item)
+        private readonly string _connectionString = @" Data Source=QASID\MSSQLSERVER02;
+                                            Initial Catalog=BANK;
+                                             Integrated Security=true";
+        SqlCustomerRepository(string connectionString)
         {
-            throw new NotImplementedException();
+            _connectionString = connectionString;
+        }
+
+        public Customer Add(Customer item)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item), "Customer cannot be null");
+            }
+
+
+            string query = @"INSERT INTO Customers (ID, FirstName, LastName, BirthDate, JoinTime, Address, PhoneNumber, Email) 
+                         VALUES (@Id, @Name, @LastName, @BirthDate, @JoinTime, @Address, @PhoneNumber, @Email)";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+               
+                command.Parameters.AddWithValue("@Id", item.Id);
+                command.Parameters.AddWithValue("@Name", item.FirstName);
+                command.Parameters.AddWithValue("@LastName", item.LastName);
+                command.Parameters.AddWithValue("@BirthDate", item.BirthDate);
+                command.Parameters.AddWithValue("@JoinTime", item.JoinTime);
+                command.Parameters.AddWithValue("@Address", item.Address);
+                command.Parameters.AddWithValue("@PhoneNumber", item.PhoneNumber);
+                command.Parameters.AddWithValue("@Email", item.Email);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    Console.WriteLine($"Customer added: {item}");
+                    
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+                return (Customer)command.ExecuteScalar();
+
+            }
         }
 
         public void Delete(int id)
@@ -31,6 +72,11 @@ namespace bank_core1.DataAccess.SQLserver
         }
 
         public void Update(Customer item)
+        {
+            throw new NotImplementedException();
+        }
+
+        void ICrudRepository<Customer>.Add(Customer item)
         {
             throw new NotImplementedException();
         }
