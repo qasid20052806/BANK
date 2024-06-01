@@ -8,7 +8,7 @@ namespace bank_core1.domain.Entites
 {
     public class Card : IDbEntities
     {
-       public int Id { get; set; }
+       public int ID { get; set; }
        public int Account_id { get; set; }
        public string card_number { get; set; }
        public string expiry_date { get; set; }

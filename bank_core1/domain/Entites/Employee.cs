@@ -9,7 +9,7 @@ namespace bank_core1.domain.Entites
 {
     public class Employee : IDbEntities
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
        
         public string name { get; set; }
         public string surname { get; set; }

@@ -3,6 +3,7 @@ using bank_core1.domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
 namespace bank_core1.DataAccess.SQLserver
 {
@@ -38,8 +39,8 @@ namespace bank_core1.DataAccess.SQLserver
                          VALUES (@Id, @Name, @LastName, @BirthDate, @JoinTime, @Address, @PhoneNumber, @Email)";
                 SqlCommand command = new SqlCommand(query, connection);
 
-                command.Parameters.AddWithValue("@Id", item.Id);
-                command.Parameters.AddWithValue("@Name", item.FirstName);
+                command.Parameters.AddWithValue("@ID", item.ID);
+                command.Parameters.AddWithValue("@FirstName", item.FirstName);
                 command.Parameters.AddWithValue("@LastName", item.LastName);
                 command.Parameters.AddWithValue("@BirthDate", item.BirthDate);
                 command.Parameters.AddWithValue("@JoinTime", item.JoinTime);
@@ -52,24 +53,121 @@ namespace bank_core1.DataAccess.SQLserver
             }
         }
 
-        public void Delete(int id)
+        public void Delete(int ID)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string query = "UPDATE Customers SET IsActive = 0 WHERE ID = @ID";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ID", ID);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
-        public Customer Get(int id)
+        public Customer Get(int ID)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT ID, FirstName,LastName,BirthDate,JoinTime,Address,PhoneNumber,Email FROM Customers WHERE ID = @ID and IsActive = 1";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ID",ID );
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read() == false)
+                            return null;
+
+                        Customer customer = new Customer(); 
+
+                        customer.ID = reader.GetInt32(reader.GetOrdinal("ID"));
+                        customer.FirstName = reader.GetString(reader.GetOrdinal("FirstName"));
+                        customer.BirthDate = reader.GetDateTime(reader.GetOrdinal("BirthDate"));
+                        customer.JoinTime = reader.GetDateTime(reader.GetOrdinal("JoinTime"));
+                        customer.Address = reader.GetString(reader.GetOrdinal("Address"));
+                        customer.PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber"));
+                        customer.Email = reader.GetString(reader.GetOrdinal("Email"));
+
+
+
+                        return customer;
+                    }
+                }
+            }
         }
 
         public List<Customer> GetAll()
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT ID, FirstName,LastName,BirthDate,JoinTime,Address,PhoneNumber,Email FROM Customers WHERE IsActive = 1";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    List<Customer> customers = new List<Customer>();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Customer customer = new Customer();
+
+                            customer.ID = reader.GetInt32(reader.GetOrdinal("ID"));
+                            customer.FirstName = reader.GetString(reader.GetOrdinal("FirstName"));
+                            customer.BirthDate = reader.GetDateTime(reader.GetOrdinal("BirthDate"));
+                            customer.JoinTime = reader.GetDateTime(reader.GetOrdinal("JoinTime"));
+                            customer.Address = reader.GetString(reader.GetOrdinal("Address"));
+                            customer.PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber"));
+                            customer.Email = reader.GetString(reader.GetOrdinal("Email"));
+
+                            customers.Add(customer);
+                        }
+
+                        return customers;
+                    }
+                }
+            }
         }
 
         public void Update(Customer item)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string query = @"UPDATE Customers SET FirstName = @FirstName, LastName = @LastName, 
+                                BirthDate = @BirthDate, JoinTime = @JoinTime,
+                                Address = @Address,
+                                PhoneNumber=@PhoneNumber,
+                                Email=@Email
+                                WHERE ID = @ID";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    
+
+                    command.Parameters.AddWithValue("@ID", item.ID);
+                    command.Parameters.AddWithValue("@FirstName", item.FirstName);
+                    command.Parameters.AddWithValue("@LastName", item.LastName);
+                    command.Parameters.AddWithValue("@BirthDate", item.BirthDate);
+                    command.Parameters.AddWithValue("@JoinTime", item.JoinTime);
+                    command.Parameters.AddWithValue("@Address", item.Address);
+                    command.Parameters.AddWithValue("@PhoneNumber", item.PhoneNumber);
+                    command.Parameters.AddWithValue("@Email", item.Email);
+
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         void ICrudRepository<Customer>.Add(Customer item)

@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace bank_core1.domain.Entites
 {
-    public interface IDbEntities
+    public class IDbEntities
     {
+        
 
-        int Id { get; set; }   
+        int ID { get; set; }   
+
     }
 }

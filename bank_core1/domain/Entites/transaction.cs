@@ -8,7 +8,7 @@ namespace bank_core1.domain.Entites
 {
     public class Transaction : IDbEntities
     {
-       public  int Id { get; set; }
+       public  int ID { get; set; }
        public  string transaction_name { get; set; }
        public  int customer_id { get; set; }
        public  double amount { get; set; }
