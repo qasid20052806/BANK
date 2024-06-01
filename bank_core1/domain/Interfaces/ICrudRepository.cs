@@ -11,6 +11,7 @@ namespace bank_core1.domain.Interfaces
     
     public interface ICrudRepository<T> where T : IDbEntities
     {
+        
         void Add(T item);
         void Update(T item);
         void Delete(int id);

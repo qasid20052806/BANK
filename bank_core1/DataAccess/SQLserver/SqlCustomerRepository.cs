@@ -16,6 +16,7 @@ namespace bank_core1.DataAccess.SQLserver
         public SqlCustomerRepository()
         {
              
+
         }
 
         SqlCustomerRepository(string connectionString)
