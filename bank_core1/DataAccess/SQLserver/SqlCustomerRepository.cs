@@ -13,7 +13,10 @@ namespace bank_core1.DataAccess.SQLserver
                                             Initial Catalog=BANK;
                                              Integrated Security=true";
 
-
+        public SqlCustomerRepository()
+        {
+             
+        }
 
         SqlCustomerRepository(string connectionString)
         {
