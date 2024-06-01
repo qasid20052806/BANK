@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace bank_core1.domain.Entites
 {
-    public class credit : IDbEntities
+    public class Credit : IDbEntities
 
     {
         public int Id {  get; set; }   

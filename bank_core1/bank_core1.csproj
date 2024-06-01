@@ -55,13 +55,13 @@
     <Compile Include="DataAccess\SQLserver\SqlUnitOfWork.cs" />
     <Compile Include="domain\Entites\Accounts.cs" />
     <Compile Include="domain\Entites\Branch.cs" />
-    <Compile Include="domain\Entites\card.cs" />
-    <Compile Include="domain\Entites\credit.cs" />
+    <Compile Include="domain\Entites\Card.cs" />
+    <Compile Include="domain\Entites\Credit.cs" />
     <Compile Include="domain\Entites\Customer.cs" />
     <Compile Include="domain\Entites\Employee.cs" />
     <Compile Include="domain\Entites\IDbEntites.cs" />
-    <Compile Include="domain\Entites\position.cs" />
-    <Compile Include="domain\Entites\transaction.cs" />
+    <Compile Include="domain\Entites\Position.cs" />
+    <Compile Include="domain\Entites\Transaction.cs" />
     <Compile Include="domain\Interfaces\ICrudRepository.cs" />
     <Compile Include="domain\Interfaces\ICustomerRepository.cs" />
     <Compile Include="domain\Interfaces\IEmployeeRepository.cs" />
